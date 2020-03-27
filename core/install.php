@@ -27,10 +27,10 @@ define('MAINTENANCE_MODE', 'install');
 // yet available. It is defined in bootstrap.inc, but it is not possible to
 // load that file yet as it would cause a fatal error on older versions of PHP.
 if (version_compare(PHP_VERSION, '5.3.2') < 0) {
-  print 'Your PHP installation is too old. Backdrop CMS requires at least PHP 5.3.2. See the <a href="https://backdropcms.org/guide/requirements">System Requirements</a> page for more information.';
-  exit;
+    echo 'Your PHP installation is too old. Backdrop CMS requires at least PHP 5.3.2. See the <a href="https://backdropcms.org/guide/requirements">System Requirements</a> page for more information.';
+    exit;
 }
 
 // Start the installer.
-require_once BACKDROP_ROOT . '/core/includes/install.core.inc';
+require_once BACKDROP_ROOT.'/core/includes/install.core.inc';
 install_backdrop();

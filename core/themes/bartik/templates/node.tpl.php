@@ -76,30 +76,30 @@
  * @see template_preprocess_node()
  */
 ?>
-<article id="node-<?php print $node->nid; ?>" class="<?php print implode(' ', $classes); ?> clearfix"<?php print backdrop_attributes($attributes); ?>>
+<article id="node-<?php echo $node->nid; ?>" class="<?php echo implode(' ', $classes); ?> clearfix"<?php echo backdrop_attributes($attributes); ?>>
 
-  <?php if (!$page || $display_submitted): ?>
+  <?php if (!$page || $display_submitted) { ?>
   <header>
-    <?php print render($title_prefix); ?>
-    <?php if (!$page && !empty($title)): ?>
-      <h2><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h2>
-    <?php endif; ?>
-    <?php print render($title_suffix); ?>
+    <?php echo render($title_prefix); ?>
+    <?php if (!$page && !empty($title)) { ?>
+      <h2><a href="<?php echo $node_url; ?>"><?php echo $title; ?></a></h2>
+    <?php } ?>
+    <?php echo render($title_suffix); ?>
 
-    <?php if ($display_submitted): ?>
+    <?php if ($display_submitted) { ?>
       <div class="meta submitted">
-        <?php print $user_picture; ?>
-        <?php print $submitted; ?>
+        <?php echo $user_picture; ?>
+        <?php echo $submitted; ?>
       </div>
-    <?php endif; ?>
+    <?php } ?>
   </header>
-  <?php endif; ?>
+  <?php } ?>
 
-  <div class="content clearfix"<?php print backdrop_attributes($content_attributes); ?>>
+  <div class="content clearfix"<?php echo backdrop_attributes($content_attributes); ?>>
     <?php
       // We hide the comments and links now so that we can render them later.
       hide($content['links']);
-      print render($content);
+      echo render($content);
     ?>
   </div>
 
@@ -107,29 +107,30 @@
     // Remove the "Add comment" link on the teaser page or if the comment
     // form is being displayed on the same page.
     if ($teaser || !empty($comments['comment_form'])) {
-      unset($content['links']['comment']['#links']['comment-add']);
+        unset($content['links']['comment']['#links']['comment-add']);
     }
     // Only display the footer if there are links.
     $links = render($content['links']);
-    if ($links):
-  ?>
+    if ($links) {
+        ?>
     <footer class="link-wrapper">
-      <?php print $links; ?>
+      <?php echo $links; ?>
     </footer>
-  <?php endif; ?>
+  <?php
+    } ?>
 
-  <?php if ($comments): ?>
+  <?php if ($comments) { ?>
     <section class="comments">
-      <?php if ($comments['comments']): ?>
-        <h2 class="title"><?php print t('Comments'); ?></h2>
-        <?php print render($comments['comments']); ?>
-      <?php endif; ?>
+      <?php if ($comments['comments']) { ?>
+        <h2 class="title"><?php echo t('Comments'); ?></h2>
+        <?php echo render($comments['comments']); ?>
+      <?php } ?>
 
-      <?php if ($comments['comment_form']): ?>
-        <h2 class="title comment-form"><?php print t('Add comment'); ?></h2>
-        <?php print render($comments['comment_form']); ?>
-      <?php endif; ?>
+      <?php if ($comments['comment_form']) { ?>
+        <h2 class="title comment-form"><?php echo t('Add comment'); ?></h2>
+        <?php echo render($comments['comment_form']); ?>
+      <?php } ?>
     </section>
-  <?php endif; ?>
+  <?php } ?>
 
 </article>

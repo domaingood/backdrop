@@ -31,116 +31,116 @@
  *   - $content['footer']
  */
 ?>
-<div class="layout--simmons <?php print implode(' ', $classes); ?>"<?php print backdrop_attributes($attributes); ?>>
+<div class="layout--simmons <?php echo implode(' ', $classes); ?>"<?php echo backdrop_attributes($attributes); ?>>
   <div id="skip-link">
-    <a href="#main-content" class="element-invisible element-focusable"><?php print t('Skip to main content'); ?></a>
+    <a href="#main-content" class="element-invisible element-focusable"><?php echo t('Skip to main content'); ?></a>
   </div>
 
-  <?php if ($content['header']): ?>
-    <header class="l-header" role="banner" aria-label="<?php print t('Site header'); ?>">
+  <?php if ($content['header']) { ?>
+    <header class="l-header" role="banner" aria-label="<?php echo t('Site header'); ?>">
       <div class="l-header-inner container container-fluid">
-        <?php print $content['header']; ?>
+        <?php echo $content['header']; ?>
       </div>
     </header>
-  <?php endif; ?>
+  <?php } ?>
 
   <div class="l-wrapper">
     <div class="l-wrapper-inner container container-fluid">
 
-      <?php if ($messages): ?>
-        <div class="l-messages" role="status" aria-label="<?php print t('Status messages'); ?>">
-          <?php print $messages; ?>
+      <?php if ($messages) { ?>
+        <div class="l-messages" role="status" aria-label="<?php echo t('Status messages'); ?>">
+          <?php echo $messages; ?>
         </div>
-      <?php endif; ?>
+      <?php } ?>
 
       <div class="l-page-title">
         <a id="main-content"></a>
-        <?php print render($title_prefix); ?>
-        <?php if ($title): ?>
-          <h1 class="page-title"><?php print $title; ?></h1>
-        <?php endif; ?>
-        <?php print render($title_suffix); ?>
+        <?php echo render($title_prefix); ?>
+        <?php if ($title) { ?>
+          <h1 class="page-title"><?php echo $title; ?></h1>
+        <?php } ?>
+        <?php echo render($title_suffix); ?>
       </div>
 
-      <?php if ($tabs): ?>
-        <nav class="tabs" role="tablist" aria-label="<?php print t('Admin content navigation tabs.'); ?>">
-          <?php print $tabs; ?>
+      <?php if ($tabs) { ?>
+        <nav class="tabs" role="tablist" aria-label="<?php echo t('Admin content navigation tabs.'); ?>">
+          <?php echo $tabs; ?>
         </nav>
-      <?php endif; ?>
+      <?php } ?>
 
-      <?php print $action_links; ?>
+      <?php echo $action_links; ?>
 
-      <?php if (!empty($content['top'])): ?>
+      <?php if (!empty($content['top'])) { ?>
         <div class="l-top">
-          <?php print $content['top']; ?>
+          <?php echo $content['top']; ?>
         </div>
-      <?php endif; ?>
+      <?php } ?>
 
       <div class="l-middle row">
-        <main class="l-content col-md-6 col-md-push-3" role="main" aria-label="<?php print t('Main content'); ?>">
-          <?php print $content['content']; ?>
+        <main class="l-content col-md-6 col-md-push-3" role="main" aria-label="<?php echo t('Main content'); ?>">
+          <?php echo $content['content']; ?>
         </main>
         <div class="l-sidebar l-sidebar-first col-md-3 col-md-pull-6">
-          <?php print $content['sidebar']; ?>
+          <?php echo $content['sidebar']; ?>
         </div>
         <div class="l-sidebar l-sidebar-second col-md-3">
-          <?php print $content['sidebar2']; ?>
+          <?php echo $content['sidebar2']; ?>
         </div>
       </div><!-- /.l-middle -->
 
-      <?php if (!empty($content['bottom'])): ?>
+      <?php if (!empty($content['bottom'])) { ?>
         <div class="l-bottom">
-          <?php print $content['bottom']; ?>
+          <?php echo $content['bottom']; ?>
         </div>
-      <?php endif; ?>
+      <?php } ?>
 
     </div><!-- /.l-wrapper-inner -->
   </div><!-- /.l-wrapper -->
 
-  <?php if ($content['third1'] || $content['third2'] || $content['third3']): ?>
+  <?php if ($content['third1'] || $content['third2'] || $content['third3']) { ?>
     <div class="l-triptych-wrapper">
       <div class="l-triptych container container-fluid">
         <div class="l-thirds row">
           <div class="l-triptych-first l-thirds-region col-md-4">
-            <?php print $content['third1']; ?>
+            <?php echo $content['third1']; ?>
           </div>
           <div class="l-triptych-middle l-thirds-region col-md-4">
-            <?php print $content['third2']; ?>
+            <?php echo $content['third2']; ?>
           </div>
           <div class="l-triptych-last l-thirds-region col-md-4">
-            <?php print $content['third3']; ?>
+            <?php echo $content['third3']; ?>
           </div>
         </div><!-- /.l-thirds -->
       </div><!-- /.l-triptych -->
     </div><!-- /.l-triptych-wrapper -->
-  <?php endif; ?>
+  <?php } ?>
 
-  <?php if ($content['footer'] || $content['quarter1'] || $content['quarter2'] || $content['quarter3'] || $content['quarter4']): ?>
+  <?php if ($content['footer'] || $content['quarter1'] || $content['quarter2'] || $content['quarter3'] || $content['quarter4']) { ?>
     <div class="l-footer-wrapper">
       <div class="l-footer-inner container container-fluid">
-        <?php if ($content['quarter1'] || $content['quarter2'] || $content['quarter3'] || $content['quarter4']): ?>
+        <?php if ($content['quarter1'] || $content['quarter2'] || $content['quarter3'] || $content['quarter4']) { ?>
           <div class="l-footer-columns l-quarters row">
             <div class="l-footer-first-column l-quarters-region col-md-3">
-              <?php print $content['quarter1']; ?>
+              <?php echo $content['quarter1']; ?>
             </div>
             <div class="l-footer-second-column l-quarters-region col-md-3">
-              <?php print $content['quarter2']; ?>
+              <?php echo $content['quarter2']; ?>
             </div>
             <div class="l-footer-third-column l-quarters-region col-md-3">
-              <?php print $content['quarter3']; ?>
+              <?php echo $content['quarter3']; ?>
             </div>
             <div class="l-footer-fourth-column l-quarters-region col-md-3">
-              <?php print $content['quarter4']; ?>
+              <?php echo $content['quarter4']; ?>
             </div>
           </div><!-- /.l-quarters -->
-        <?php endif; ?>
+        <?php } ?>
 
-        <?php if ($content['footer']): ?>
+        <?php if ($content['footer']) { ?>
           <footer class="l-footer">
-            <?php print $content['footer']; ?>
+            <?php echo $content['footer']; ?>
           </footer>
-        <?php endif; ?>
+        <?php } ?>
       </div><!-- /.l-footer-inner -->
     </div><!-- /.l-footer-wrapper -->
-  <?php endif; ?>
+  <?php } ?>
 </div><!-- /.layout--simmons -->

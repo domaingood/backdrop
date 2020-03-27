@@ -11,47 +11,47 @@
  */
 ?>
 <!DOCTYPE html>
-<html<?php print backdrop_attributes($html_attributes); ?>>
+<html<?php echo backdrop_attributes($html_attributes); ?>>
 <head>
-  <?php print backdrop_get_html_head(); ?>
-  <title><?php print $head_title; ?></title>
-  <?php print backdrop_get_css(); ?>
-  <?php print backdrop_get_js(); ?>
+  <?php echo backdrop_get_html_head(); ?>
+  <title><?php echo $head_title; ?></title>
+  <?php echo backdrop_get_css(); ?>
+  <?php echo backdrop_get_js(); ?>
 </head>
-<body class="<?php print implode(' ', $classes); ?>"<?php print backdrop_attributes($attributes); ?>>
+<body class="<?php echo implode(' ', $classes); ?>"<?php echo backdrop_attributes($attributes); ?>>
 
   <div id="skip-link">
-    <a href="#main-content" class="element-invisible element-focusable"><?php print t('Skip to main content'); ?></a>
+    <a href="#main-content" class="element-invisible element-focusable"><?php echo t('Skip to main content'); ?></a>
   </div>
 
   <div id="page-wrapper"><div id="page">
 
     <header id="header" role="banner">
-      <?php if ($site_name || $site_slogan): ?>
+      <?php if ($site_name || $site_slogan) { ?>
         <div id="name-and-slogan">
-          <?php if ($site_name): ?>
+          <?php if ($site_name) { ?>
             <div class="site-name">
-              <?php print $site_name; ?>
+              <?php echo $site_name; ?>
             </div>
-          <?php endif; ?>
-          <?php if ($site_slogan): ?>
+          <?php } ?>
+          <?php if ($site_slogan) { ?>
             <div class="site-slogan">
-              <?php print $site_slogan; ?>
+              <?php echo $site_slogan; ?>
             </div>
-          <?php endif; ?>
+          <?php } ?>
         </div> <!-- /#name-and-slogan -->
-      <?php endif; ?>
+      <?php } ?>
     </header>
 
     <main id="content" class="column" role="main">
       <a id="main-content"></a>
-      <?php if ($title): ?><h1 class="page-title"><?php print $title; ?></h1><?php endif; ?>
-      <?php print $content; ?>
-      <?php if ($messages): ?>
+      <?php if ($title) { ?><h1 class="page-title"><?php echo $title; ?></h1><?php } ?>
+      <?php echo $content; ?>
+      <?php if ($messages) { ?>
         <div id="messages">
-          <?php print $messages; ?>
+          <?php echo $messages; ?>
         </div>
-      <?php endif; ?>
+      <?php } ?>
     </main>
 
   </div></div> <!-- /#page, /#page-wrapper -->

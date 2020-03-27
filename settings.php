@@ -5,7 +5,7 @@
  */
 
 /**
- * Database configuration:
+ * Database configuration:.
  *
  * Most sites can configure their database by entering the connection string
  * below. If using master/slave databases or multiple connections, see the
@@ -23,6 +23,7 @@ $database_prefix = '';
  * that is not publicly accessible through a web browser.
  *
  * Example using directories one parent level up:
+ *
  * @code
  * $config_directories['active'] = '../config/active';
  * $config_directories['staging'] = '../config/staging';
@@ -34,8 +35,8 @@ $database_prefix = '';
  * $config_directories['staging'] = '/home/myusername/config/staging';
  * @endcode
  */
-$config_directories['active'] = 'files/config_' . md5($database) . '/active';
-$config_directories['staging'] = 'files/config_' . md5($database) . '/staging';
+$config_directories['active'] = 'files/config_'.md5($database).'/active';
+$config_directories['staging'] = 'files/config_'.md5($database).'/staging';
 
 /**
  * Access control for update.php script.
@@ -48,7 +49,7 @@ $config_directories['staging'] = 'files/config_' . md5($database) . '/staging';
  * After finishing the upgrade, be sure to open this file again and change the
  * TRUE back to a FALSE!
  */
-$settings['update_free_access'] = FALSE;
+$settings['update_free_access'] = false;
 
 /**
  * Salt for one-time login links and cancel links, form tokens, etc.
@@ -64,10 +65,10 @@ $settings['update_free_access'] = FALSE;
  * with any backups of your Backdrop files and database.
  *
  * Example:
+ *
  * @code
  * $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
- *
  */
 $settings['hash_salt'] = '';
 
@@ -84,6 +85,7 @@ $settings['hash_salt'] = '';
  * you would like to allow.
  *
  * For example, this will allow the site to only run from www.example.com:
+ *
  * @code
  * $settings['trusted_host_patterns'] = array(
  *   '^www\.example\.com$',
@@ -141,7 +143,7 @@ $settings['hash_salt'] = '';
 // $base_url = 'http://www.example.com'; // NO trailing slash!
 
 /**
- * PHP settings:
+ * PHP settings:.
  *
  * To see what PHP settings are possible, including whether they can be set at
  * runtime (by using ini_set()), read the PHP documentation:
@@ -209,7 +211,7 @@ ini_set('session.cookie_lifetime', 2000000);
 // $settings['maintenance_theme'] = 'bartik';
 
 /**
- * Reverse Proxy Configuration:
+ * Reverse Proxy Configuration:.
  *
  * Reverse proxy servers are often used to enhance the performance
  * of heavily visited sites and may also provide other site caching,
@@ -254,7 +256,7 @@ ini_set('session.cookie_lifetime', 2000000);
 // $settings['reverse_proxy_header'] = 'HTTP_X_CLUSTER_CLIENT_IP';
 
 /**
- * Page caching:
+ * Page caching:.
  *
  * By default, Backdrop sends a "Vary: Cookie" HTTP header for anonymous page
  * views. This tells a HTTP proxy that it may return a page from its local
@@ -272,7 +274,7 @@ ini_set('session.cookie_lifetime', 2000000);
 // $settings['omit_vary_cookie'] = TRUE;
 
 /**
- * Expiration of cache_form entries:
+ * Expiration of cache_form entries:.
  *
  * Backdrop's Form API stores details of forms in cache_form and these entries
  * are kept for at least 6 hours by default. Expired entries are cleared by
@@ -289,7 +291,7 @@ ini_set('session.cookie_lifetime', 2000000);
 // $settings['form_cache_expiration'] = 21600;
 
 /**
- * String overrides:
+ * String overrides:.
  *
  * To override specific strings on your site with or without enabling locale
  * module, add an entry to this list. This functionality allows you to change
@@ -305,7 +307,7 @@ $settings['locale_custom_strings_en'][''] = array(
 */
 
 /**
- * Fast 404 pages:
+ * Fast 404 pages:.
  *
  * Backdrop can generate fully themed 404 pages. However, some of these
  * responses are for images or other resource files that are not displayed to
@@ -342,7 +344,7 @@ $settings['404_fast_html'] = '<!DOCTYPE html><html><head><title>404 Not Found</t
 // fast_404();
 
 /**
- * External access proxy settings:
+ * External access proxy settings:.
  *
  * If your site must access the Internet via a web proxy then you can enter
  * the proxy settings here. Currently only basic authentication is supported
@@ -360,7 +362,7 @@ $settings['404_fast_html'] = '<!DOCTYPE html><html><head><title>404 Not Found</t
 // $settings['proxy_exceptions'] = array('127.0.0.1', 'localhost');
 
 /**
- * Authorized file system operations:
+ * Authorized file system operations:.
  *
  * The Update Manager module included with Backdrop provides a mechanism for
  * site administrators to securely install missing updates for the site
@@ -382,7 +384,7 @@ $settings['404_fast_html'] = '<!DOCTYPE html><html><head><title>404 Not Found</t
 // $settings['allow_authorize_operations'] = FALSE;
 
 /**
- * Mixed-mode sessions:
+ * Mixed-mode sessions:.
  *
  * Set to TRUE to create both secure and insecure sessions when using HTTPS.
  * Defaults to FALSE.
@@ -397,7 +399,7 @@ $settings['404_fast_html'] = '<!DOCTYPE html><html><head><title>404 Not Found</t
  * layer however. You may disable it if all the modules you're running were
  * built for Backdrop.
  */
-$settings['backdrop_drupal_compatibility'] = TRUE;
+$settings['backdrop_drupal_compatibility'] = true;
 
 /**
  * Include a local settings file, if available.
@@ -417,6 +419,6 @@ $settings['backdrop_drupal_compatibility'] = TRUE;
  *
  * Keep this code block at the end of this file to take full effect.
  */
-if (file_exists(__DIR__ . '/settings.local.php')) {
-  include __DIR__ . '/settings.local.php';
+if (file_exists(__DIR__.'/settings.local.php')) {
+    include __DIR__.'/settings.local.php';
 }

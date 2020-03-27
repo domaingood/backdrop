@@ -32,101 +32,101 @@
  *   - $content['footer']
  */
 ?>
-<div class="layout--three-three-four-column layout-legacy <?php print implode(' ', $classes); ?>"<?php print backdrop_attributes($attributes); ?>>
+<div class="layout--three-three-four-column layout-legacy <?php echo implode(' ', $classes); ?>"<?php echo backdrop_attributes($attributes); ?>>
   <div id="skip-link">
-    <a href="#main-content" class="element-invisible element-focusable"><?php print t('Skip to main content'); ?></a>
+    <a href="#main-content" class="element-invisible element-focusable"><?php echo t('Skip to main content'); ?></a>
   </div>
 
-  <?php if ($content['header']): ?>
-    <header class="l-header" role="banner" aria-label="<?php print t('Site header'); ?>">
-      <?php print $content['header']; ?>
+  <?php if ($content['header']) { ?>
+    <header class="l-header" role="banner" aria-label="<?php echo t('Site header'); ?>">
+      <?php echo $content['header']; ?>
     </header>
-  <?php endif; ?>
+  <?php } ?>
 
-  <?php if ($content['top']): ?>
+  <?php if ($content['top']) { ?>
     <div class="l-top">
-      <?php print $content['top']; ?>
+      <?php echo $content['top']; ?>
     </div>
-  <?php endif; ?>
+  <?php } ?>
 
-  <?php if ($messages): ?>
+  <?php if ($messages) { ?>
     <div class="l-messages">
-      <?php print $messages; ?>
+      <?php echo $messages; ?>
     </div>
-  <?php endif; ?>
+  <?php } ?>
 
   <div class="l-container">
     <main class="l-content" role="main">
       <a id="main-content"></a>
-      <?php print render($title_prefix); ?>
-      <?php if ($title): ?>
+      <?php echo render($title_prefix); ?>
+      <?php if ($title) { ?>
         <h1 class="page-title">
-          <?php print $title; ?>
+          <?php echo $title; ?>
         </h1>
-      <?php endif; ?>
-      <?php print render($title_suffix); ?>
+      <?php } ?>
+      <?php echo render($title_suffix); ?>
 
-      <?php if ($tabs): ?>
+      <?php if ($tabs) { ?>
         <div class="tabs">
-          <?php print $tabs; ?>
+          <?php echo $tabs; ?>
         </div>
-      <?php endif; ?>
+      <?php } ?>
 
-      <?php print $action_links; ?>
-      <?php print $content['content'] ? $content['content'] : '&nbsp;'; ?>
+      <?php echo $action_links; ?>
+      <?php echo $content['content'] ? $content['content'] : '&nbsp;'; ?>
     </main>
 
-    <?php if ($content['sidebar_first']): ?>
+    <?php if ($content['sidebar_first']) { ?>
       <div class="l-sidebar-first l-sidebar">
-        <?php print $content['sidebar_first']; ?>
+        <?php echo $content['sidebar_first']; ?>
       </div>
-    <?php endif; ?>
+    <?php } ?>
 
-    <?php if ($content['sidebar_second']): ?>
+    <?php if ($content['sidebar_second']) { ?>
       <div class="l-sidebar-second l-sidebar">
-        <?php print $content['sidebar_second']; ?>
+        <?php echo $content['sidebar_second']; ?>
       </div>
-    <?php endif; ?>
+    <?php } ?>
   </div>
 
-  <?php if ($content['triptych_first'] || $content['triptych_middle'] || $content['triptych_last']): ?>
+  <?php if ($content['triptych_first'] || $content['triptych_middle'] || $content['triptych_last']) { ?>
     <div class="l-triptych">
       <div class="l-triptych-first">
-        <?php print $content['triptych_first']; ?>
+        <?php echo $content['triptych_first']; ?>
       </div>
       <div class="l-triptych-middle">
-        <?php print $content['triptych_middle']; ?>
+        <?php echo $content['triptych_middle']; ?>
       </div>
       <div class="l-triptych-last">
-        <?php print $content['triptych_last']; ?>
+        <?php echo $content['triptych_last']; ?>
       </div>
     </div>
-  <?php endif; ?>
+  <?php } ?>
 
-  <?php if ($content['footer'] || $content['footer_firstcolumn'] || $content['footer_secondcolumn'] || $content['footer_thirdcolumn'] || $content['footer_fourthcolumn']): ?>
+  <?php if ($content['footer'] || $content['footer_firstcolumn'] || $content['footer_secondcolumn'] || $content['footer_thirdcolumn'] || $content['footer_fourthcolumn']) { ?>
     <div class="l-footer-wrapper">
-      <?php if ($content['footer_firstcolumn'] || $content['footer_secondcolumn'] || $content['footer_thirdcolumn'] || $content['footer_fourthcolumn']): ?>
+      <?php if ($content['footer_firstcolumn'] || $content['footer_secondcolumn'] || $content['footer_thirdcolumn'] || $content['footer_fourthcolumn']) { ?>
         <div class="l-footer-columns">
           <div class="l-footer-first-column">
-            <?php print $content['footer_firstcolumn']; ?>
+            <?php echo $content['footer_firstcolumn']; ?>
           </div>
           <div class="l-footer-second-column">
-            <?php print $content['footer_secondcolumn']; ?>
+            <?php echo $content['footer_secondcolumn']; ?>
           </div>
           <div class="l-footer-third-column">
-            <?php print $content['footer_thirdcolumn']; ?>
+            <?php echo $content['footer_thirdcolumn']; ?>
           </div>
           <div class="l-footer-fourth-column">
-            <?php print $content['footer_fourthcolumn']; ?>
+            <?php echo $content['footer_fourthcolumn']; ?>
           </div>
         </div>
-      <?php endif; ?>
+      <?php } ?>
 
-      <?php if ($content['footer']): ?>
+      <?php if ($content['footer']) { ?>
         <footer class="l-footer">
-          <?php print $content['footer']; ?>
+          <?php echo $content['footer']; ?>
         </footer>
-      <?php endif; ?>
+      <?php } ?>
     </div>
-  <?php endif; ?>
+  <?php } ?>
 </div>
