@@ -45,7 +45,8 @@ define('MAINTENANCE_MODE', 'update');
 /**
  * Renders a 403 access denied page for authorize.php.
  */
-function authorize_access_denied_page() {
+function authorize_access_denied_page() 
+{
   backdrop_add_http_header('Status', '403 Forbidden');
   watchdog('access denied', 'authorize.php', NULL, WATCHDOG_WARNING);
   backdrop_set_title('Access denied');
@@ -61,7 +62,8 @@ function authorize_access_denied_page() {
  * @return
  *   TRUE if the current user can run authorize.php, and FALSE if not.
  */
-function authorize_access_allowed() {
+function authorize_access_allowed() 
+{
   return settings_get('allow_authorize_operations', TRUE) && user_access('administer software updates');
 }
 
@@ -84,7 +86,7 @@ global $conf;
 // display errors via the maintenance theme.
 $module_list['system']['filename'] = 'core/modules/system/system.module';
 $module_list['user']['filename'] = 'core/modules/user/user.module';
-module_list(TRUE, FALSE, FALSE, $module_list);
+module_list(true, false, false, $module_list);
 backdrop_load('module', 'system');
 backdrop_load('module', 'user');
 
@@ -98,7 +100,7 @@ backdrop_language_initialize();
 backdrop_maintenance_theme();
 
 $output = '';
-$show_messages = TRUE;
+$show_messages = true;
 
 if (authorize_access_allowed()) {
   // Load both the Form API and Batch API.
