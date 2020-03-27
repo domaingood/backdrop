@@ -16,6 +16,6 @@
  */
 define('BACKDROP_ROOT', getcwd());
 
-require_once BACKDROP_ROOT . '/core/includes/bootstrap.inc';
+require_once BACKDROP_ROOT.'/core/includes/bootstrap.inc';
 backdrop_bootstrap(BACKDROP_BOOTSTRAP_FULL);
 menu_execute_active_handler();

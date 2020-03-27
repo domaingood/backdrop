@@ -53,13 +53,13 @@
  * @see theme_comment()
  */
 ?>
-<article class="<?php print implode(' ', $classes); ?> clearfix"<?php print backdrop_attributes($attributes); ?> role="article">
+<article class="<?php echo implode(' ', $classes); ?> clearfix"<?php echo backdrop_attributes($attributes); ?> role="article">
   <header class="comment-header">
     <div class="attribution">
-      <?php print $user_picture; ?>
+      <?php echo $user_picture; ?>
 
       <div class="submitted">
-        <p class="commenter-name"><?php print $author; ?></p>
+        <p class="commenter-name"><?php echo $author; ?></p>
       </div>
     </div> <!-- /.attribution -->
   </header> <!-- /.comment-header -->
@@ -67,31 +67,31 @@
   <div class="comment-text">
 
     <div class="comment-title">
-      <?php print render($title_prefix); ?>
-      <h3><?php print $title; ?></h3>
-      <?php print render($title_suffix); ?>
-      <?php if ($new): ?>
-        <span class="marker"><?php print $new; ?></span>
-      <?php endif; ?>
-      <span class="comment-time"><?php print $created; ?></span>
+      <?php echo render($title_prefix); ?>
+      <h3><?php echo $title; ?></h3>
+      <?php echo render($title_suffix); ?>
+      <?php if ($new) { ?>
+        <span class="marker"><?php echo $new; ?></span>
+      <?php } ?>
+      <span class="comment-time"><?php echo $created; ?></span>
     </div>
 
-    <div class="content"<?php print backdrop_attributes($content_attributes); ?>>
+    <div class="content"<?php echo backdrop_attributes($content_attributes); ?>>
       <?php
         // We hide the comments and links now so that we can render them later.
         hide($content['links']);
-        print render($content);
+        echo render($content);
       ?>
     </div> <!-- /.content -->
 
     <footer class="comment-footer">
-      <?php if ($signature): ?>
+      <?php if ($signature) { ?>
       <div class="user-signature clearfix">
-        <?php print $signature; ?>
+        <?php echo $signature; ?>
       </div>
-      <?php endif; ?>
+      <?php } ?>
 
-      <nav><?php print render($content['links']); ?></nav>
+      <nav><?php echo render($content['links']); ?></nav>
     </footer> <!-- /.comment-footer -->
 
   </div> <!-- /.comment-text -->

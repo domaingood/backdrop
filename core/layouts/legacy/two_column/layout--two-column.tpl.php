@@ -25,60 +25,60 @@
  *   - $content['footer']
  */
 ?>
-<div class="layout--two-column layout-legacy <?php print implode(' ', $classes); ?>"<?php print backdrop_attributes($attributes); ?>>
+<div class="layout--two-column layout-legacy <?php echo implode(' ', $classes); ?>"<?php echo backdrop_attributes($attributes); ?>>
   <div id="skip-link">
-    <a href="#main-content" class="element-invisible element-focusable"><?php print t('Skip to main content'); ?></a>
+    <a href="#main-content" class="element-invisible element-focusable"><?php echo t('Skip to main content'); ?></a>
   </div>
 
-  <?php if ($content['header']): ?>
-    <header class="l-header" role="banner" aria-label="<?php print t('Site header'); ?>">
-      <?php print $content['header']; ?>
+  <?php if ($content['header']) { ?>
+    <header class="l-header" role="banner" aria-label="<?php echo t('Site header'); ?>">
+      <?php echo $content['header']; ?>
     </header>
-  <?php endif; ?>
+  <?php } ?>
 
-  <?php if ($content['top']): ?>
+  <?php if ($content['top']) { ?>
     <div class="l-top">
-      <?php print $content['top']; ?>
+      <?php echo $content['top']; ?>
     </div>
-  <?php endif; ?>
+  <?php } ?>
 
-  <?php if ($messages): ?>
+  <?php if ($messages) { ?>
     <div class="l-messages">
-      <?php print $messages; ?>
+      <?php echo $messages; ?>
     </div>
-  <?php endif; ?>
+  <?php } ?>
 
   <div class="l-container">
     <main class="l-content" role="main">
       <a id="main-content"></a>
-      <?php print render($title_prefix); ?>
-      <?php if ($title): ?>
+      <?php echo render($title_prefix); ?>
+      <?php if ($title) { ?>
         <h1 class="page-title">
-          <?php print $title; ?>
+          <?php echo $title; ?>
         </h1>
-      <?php endif; ?>
-      <?php print render($title_suffix); ?>
+      <?php } ?>
+      <?php echo render($title_suffix); ?>
 
-      <?php if ($tabs): ?>
+      <?php if ($tabs) { ?>
         <div class="tabs">
-          <?php print $tabs; ?>
+          <?php echo $tabs; ?>
         </div>
-      <?php endif; ?>
+      <?php } ?>
 
-      <?php print $action_links; ?>
-      <?php print $content['content']; ?>
+      <?php echo $action_links; ?>
+      <?php echo $content['content']; ?>
     </main>
 
-    <?php if ($content['sidebar']): ?>
+    <?php if ($content['sidebar']) { ?>
       <div class="l-sidebar">
-        <?php print $content['sidebar']; ?>
+        <?php echo $content['sidebar']; ?>
       </div>
-    <?php endif; ?>
+    <?php } ?>
   </div>
 
-  <?php if ($content['footer']): ?>
+  <?php if ($content['footer']) { ?>
     <footer class="l-footer">
-      <?php print $content['footer']; ?>
+      <?php echo $content['footer']; ?>
     </footer>
-  <?php endif; ?>
+  <?php } ?>
 </div>

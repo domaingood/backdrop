@@ -12,16 +12,16 @@
  * - $content: The actual content of the block.
  */
 ?>
-<div class="<?php print implode(' ', $classes); ?>"<?php print backdrop_attributes($attributes); ?>>
+<div class="<?php echo implode(' ', $classes); ?>"<?php echo backdrop_attributes($attributes); ?>>
   <div class="container">
-    <?php print render($title_prefix); ?>
-    <?php if ($title): ?>
-      <h2 class="block-title"><?php print $title; ?></h2>
-    <?php endif; ?>
-    <?php print render($title_suffix); ?>
+    <?php echo render($title_prefix); ?>
+    <?php if ($title) { ?>
+      <h2 class="block-title"><?php echo $title; ?></h2>
+    <?php } ?>
+    <?php echo render($title_suffix); ?>
 
     <div class="block-content">
-      <?php print render($content); ?>
+      <?php echo render($content); ?>
     </div>
   </div>
 </div>

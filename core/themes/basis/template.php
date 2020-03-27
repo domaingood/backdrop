@@ -9,22 +9,23 @@
  *
  * @see page.tpl.php
  */
-function basis_preprocess_page(&$variables) {
-  $node = menu_get_object();
+function basis_preprocess_page(&$variables)
+{
+    $node = menu_get_object();
 
-  // Add the OpenSans font from core on every page of the site.
-  backdrop_add_library('system', 'opensans', TRUE);
+    // Add the OpenSans font from core on every page of the site.
+    backdrop_add_library('system', 'opensans', true);
 
-  // To add a class 'page-node-[nid]' to each page.
-  if ($node) {
-    $variables['classes'][] = 'page-node-' . $node->nid;
-  }
+    // To add a class 'page-node-[nid]' to each page.
+    if ($node) {
+        $variables['classes'][] = 'page-node-'.$node->nid;
+    }
 
-  // To add a class 'view-name-[name]' to each page.
-  $view = views_get_page_view();
-  if ($view) {
-    $variables['classes'][] = 'view-name-' . $view->name;
-  }
+    // To add a class 'view-name-[name]' to each page.
+    $view = views_get_page_view();
+    if ($view) {
+        $variables['classes'][] = 'view-name-'.$view->name;
+    }
 }
 
 /**
@@ -32,9 +33,10 @@ function basis_preprocess_page(&$variables) {
  *
  * @see maintenance-page.tpl.php
  */
-function basis_preprocess_maintenance_page(&$variables) {
-  $css_path = backdrop_get_path('theme', 'basis') . '/css/component/maintenance.css';
-  backdrop_add_css($css_path);
+function basis_preprocess_maintenance_page(&$variables)
+{
+    $css_path = backdrop_get_path('theme', 'basis').'/css/component/maintenance.css';
+    backdrop_add_css($css_path);
 }
 
 /**
@@ -42,15 +44,16 @@ function basis_preprocess_maintenance_page(&$variables) {
  *
  * @see layout.tpl.php
  */
-function basis_preprocess_layout(&$variables) {
-  if ($variables['is_front']) {
-    // Add a special front-page class.
-    $variables['classes'][] = 'layout-front';
-    // Add a special front-page template suggestion.
-    $original = $variables['theme_hook_original'];
-    $variables['theme_hook_suggestions'][] = $original . '__front';
-    $variables['theme_hook_suggestion'] = $original . '__front';
-  }
+function basis_preprocess_layout(&$variables)
+{
+    if ($variables['is_front']) {
+        // Add a special front-page class.
+        $variables['classes'][] = 'layout-front';
+        // Add a special front-page template suggestion.
+        $original = $variables['theme_hook_original'];
+        $variables['theme_hook_suggestions'][] = $original.'__front';
+        $variables['theme_hook_suggestion'] = $original.'__front';
+    }
 }
 
 /**
@@ -58,14 +61,15 @@ function basis_preprocess_layout(&$variables) {
  *
  * @see node.tpl.php
  */
-function basis_preprocess_node(&$variables) {
-  if ($variables['status'] == NODE_NOT_PUBLISHED) {
-    $name = node_type_get_name($variables['type']);
-    $variables['title_suffix']['unpublished_indicator'] = array(
-      '#type' => 'markup',
-      '#markup' => '<div class="unpublished-indicator">' . t('This @type is unpublished.', array('@type' => $name)) . '</div>',
-    );
-  }
+function basis_preprocess_node(&$variables)
+{
+    if ($variables['status'] == NODE_NOT_PUBLISHED) {
+        $name = node_type_get_name($variables['type']);
+        $variables['title_suffix']['unpublished_indicator'] = [
+            '#type'   => 'markup',
+            '#markup' => '<div class="unpublished-indicator">'.t('This @type is unpublished.', ['@type' => $name]).'</div>',
+        ];
+    }
 }
 
 /**
@@ -73,20 +77,21 @@ function basis_preprocess_node(&$variables) {
  *
  * @see header.tpl.php
  */
-function basis_preprocess_header(&$variables) {
-  $logo = $variables['logo'];
-  $logo_attributes = $variables['logo_attributes'];
+function basis_preprocess_header(&$variables)
+{
+    $logo = $variables['logo'];
+    $logo_attributes = $variables['logo_attributes'];
 
-  // Add classes and height/width to logo.
-  if ($logo) {
-    $logo_wrapper_classes = array();
-    $logo_wrapper_classes[] = 'header-logo-wrapper';
-    if ($logo_attributes['width'] <= $logo_attributes['height']) {
-      $logo_wrapper_classes[] = 'header-logo-tall';
+    // Add classes and height/width to logo.
+    if ($logo) {
+        $logo_wrapper_classes = [];
+        $logo_wrapper_classes[] = 'header-logo-wrapper';
+        if ($logo_attributes['width'] <= $logo_attributes['height']) {
+            $logo_wrapper_classes[] = 'header-logo-tall';
+        }
+
+        $variables['logo_wrapper_classes'] = $logo_wrapper_classes;
     }
-
-    $variables['logo_wrapper_classes'] = $logo_wrapper_classes;
-  }
 }
 
 /**
@@ -94,16 +99,18 @@ function basis_preprocess_header(&$variables) {
  *
  * @see theme_breadcrumb().
  */
-function basis_breadcrumb($variables) {
-  $breadcrumb = $variables['breadcrumb'];
-  $output = '';
-  if (!empty($breadcrumb)) {
-    $output .= '<nav role="navigation" class="breadcrumb">';
-    // Provide a navigational heading to give context for breadcrumb links to
-    // screen-reader users. Make the heading invisible with .element-invisible.
-    $output .= '<h2 class="element-invisible">' . t('You are here') . '</h2>';
-    $output .= '<ol><li>' . implode('</li><li>', $breadcrumb) . '</li></ol>';
-    $output .= '</nav>';
-  }
-  return $output;
+function basis_breadcrumb($variables)
+{
+    $breadcrumb = $variables['breadcrumb'];
+    $output = '';
+    if (!empty($breadcrumb)) {
+        $output .= '<nav role="navigation" class="breadcrumb">';
+        // Provide a navigational heading to give context for breadcrumb links to
+        // screen-reader users. Make the heading invisible with .element-invisible.
+        $output .= '<h2 class="element-invisible">'.t('You are here').'</h2>';
+        $output .= '<ol><li>'.implode('</li><li>', $breadcrumb).'</li></ol>';
+        $output .= '</nav>';
+    }
+
+    return $output;
 }

@@ -17,6 +17,7 @@
  *
  * There are helper functions for setting up an operation to run via this
  * system in modules/system/system.module. For more information, see:
+ *
  * @link authorize Authorized operation helper functions @endlink
  */
 
@@ -45,11 +46,13 @@ define('MAINTENANCE_MODE', 'update');
 /**
  * Renders a 403 access denied page for authorize.php.
  */
-function authorize_access_denied_page() {
-  backdrop_add_http_header('Status', '403 Forbidden');
-  watchdog('access denied', 'authorize.php', NULL, WATCHDOG_WARNING);
-  backdrop_set_title('Access denied');
-  return t('You are not allowed to access this page.');
+function authorize_access_denied_page()
+{
+    backdrop_add_http_header('Status', '403 Forbidden');
+    watchdog('access denied', 'authorize.php', null, WATCHDOG_WARNING);
+    backdrop_set_title('Access denied');
+
+    return t('You are not allowed to access this page.');
 }
 
 /**
@@ -61,17 +64,18 @@ function authorize_access_denied_page() {
  * @return
  *   TRUE if the current user can run authorize.php, and FALSE if not.
  */
-function authorize_access_allowed() {
-  return settings_get('allow_authorize_operations', TRUE) && user_access('administer software updates');
+function authorize_access_allowed()
+{
+    return settings_get('allow_authorize_operations', true) && user_access('administer software updates');
 }
 
 // *** Real work of the script begins here. ***
 
-require_once BACKDROP_ROOT . '/core/includes/bootstrap.inc';
-require_once BACKDROP_ROOT . '/core/includes/common.inc';
-require_once BACKDROP_ROOT . '/core/includes/file.inc';
-require_once BACKDROP_ROOT . '/core/includes/module.inc';
-require_once BACKDROP_ROOT . '/core/includes/ajax.inc';
+require_once BACKDROP_ROOT.'/core/includes/bootstrap.inc';
+require_once BACKDROP_ROOT.'/core/includes/common.inc';
+require_once BACKDROP_ROOT.'/core/includes/file.inc';
+require_once BACKDROP_ROOT.'/core/includes/module.inc';
+require_once BACKDROP_ROOT.'/core/includes/ajax.inc';
 
 // We prepare only a minimal bootstrap. This includes the database and
 // variables, however, so we have access to the class autoloader registry.
@@ -84,7 +88,7 @@ global $conf;
 // display errors via the maintenance theme.
 $module_list['system']['filename'] = 'core/modules/system/system.module';
 $module_list['user']['filename'] = 'core/modules/user/user.module';
-module_list(TRUE, FALSE, FALSE, $module_list);
+module_list(true, false, false, $module_list);
 backdrop_load('module', 'system');
 backdrop_load('module', 'user');
 
@@ -98,83 +102,78 @@ backdrop_language_initialize();
 backdrop_maintenance_theme();
 
 $output = '';
-$show_messages = TRUE;
+$show_messages = true;
 
 if (authorize_access_allowed()) {
-  // Load both the Form API and Batch API.
-  require_once BACKDROP_ROOT . '/core/includes/form.inc';
-  require_once BACKDROP_ROOT . '/core/includes/batch.inc';
-  // Load the code that drives the authorize process.
-  require_once BACKDROP_ROOT . '/core/includes/authorize.inc';
+    // Load both the Form API and Batch API.
+    require_once BACKDROP_ROOT.'/core/includes/form.inc';
+    require_once BACKDROP_ROOT.'/core/includes/batch.inc';
+    // Load the code that drives the authorize process.
+    require_once BACKDROP_ROOT.'/core/includes/authorize.inc';
 
-  // For the sake of Batch API and a few other low-level functions, we need to
-  // initialize the URL path into $_GET['q']. However, we do not want to raise
-  // our bootstrap level since that is assuming that modules are loaded and
-  // invoking hooks. However, all we really care is if we're in the middle of a
-  // batch, in which case $_GET['q'] will already be set, we just initialize it
-  // to an empty string if it's not already defined.
-  if (!isset($_GET['q'])) {
-    $_GET['q'] = '';
-  }
+    // For the sake of Batch API and a few other low-level functions, we need to
+    // initialize the URL path into $_GET['q']. However, we do not want to raise
+    // our bootstrap level since that is assuming that modules are loaded and
+    // invoking hooks. However, all we really care is if we're in the middle of a
+    // batch, in which case $_GET['q'] will already be set, we just initialize it
+    // to an empty string if it's not already defined.
+    if (!isset($_GET['q'])) {
+        $_GET['q'] = '';
+    }
 
-  if (isset($_SESSION['authorize_operation']['page_title'])) {
-    backdrop_set_title($_SESSION['authorize_operation']['page_title']);
-  }
-  else {
-    backdrop_set_title(t('Authorize file system changes'));
-  }
+    if (isset($_SESSION['authorize_operation']['page_title'])) {
+        backdrop_set_title($_SESSION['authorize_operation']['page_title']);
+    } else {
+        backdrop_set_title(t('Authorize file system changes'));
+    }
 
-  // See if we've run the operation and need to display a report.
-  if (isset($_SESSION['authorize_results']) && $results = $_SESSION['authorize_results']) {
+    // See if we've run the operation and need to display a report.
+    if (isset($_SESSION['authorize_results']) && $results = $_SESSION['authorize_results']) {
 
     // Clear the session out.
-    unset($_SESSION['authorize_results']);
-    unset($_SESSION['authorize_operation']);
-    unset($_SESSION['authorize_filetransfer_info']);
+        unset($_SESSION['authorize_results']);
+        unset($_SESSION['authorize_operation']);
+        unset($_SESSION['authorize_filetransfer_info']);
 
-    if (!empty($results['page_title'])) {
-      backdrop_set_title($results['page_title']);
-    }
-    if (!empty($results['page_message'])) {
-      backdrop_set_message($results['page_message']['message'], $results['page_message']['type']);
-    }
+        if (!empty($results['page_title'])) {
+            backdrop_set_title($results['page_title']);
+        }
+        if (!empty($results['page_message'])) {
+            backdrop_set_message($results['page_message']['message'], $results['page_message']['type']);
+        }
 
-    $output = theme('authorize_report', array('messages' => $results['messages']));
+        $output = theme('authorize_report', ['messages' => $results['messages']]);
 
-    $links = array();
-    if (is_array($results['tasks'])) {
-      $links += $results['tasks'];
-    }
-    else {
-      $links = array_merge($links, array(
-        l(t('Administration pages'), 'admin'),
-        l(t('Front page'), '<front>'),
-      ));
-    }
+        $links = [];
+        if (is_array($results['tasks'])) {
+            $links += $results['tasks'];
+        } else {
+            $links = array_merge($links, [
+                l(t('Administration pages'), 'admin'),
+                l(t('Front page'), '<front>'),
+            ]);
+        }
 
-    $output .= theme('item_list', array('items' => $links, 'title' => t('Next steps')));
-  }
-  // If a batch is running, let it run.
-  elseif (isset($_GET['batch'])) {
-    $output = _batch_page();
-  }
-  else {
-    if (empty($_SESSION['authorize_operation']) || empty($_SESSION['authorize_filetransfer_info'])) {
-      $output = t('It appears you have reached this page in error.');
+        $output .= theme('item_list', ['items' => $links, 'title' => t('Next steps')]);
     }
-    elseif (!$batch = batch_get()) {
-      // We have a batch to process, show the filetransfer form.
-      $elements = backdrop_get_form('authorize_filetransfer_form');
-      $output = backdrop_render($elements);
+    // If a batch is running, let it run.
+    elseif (isset($_GET['batch'])) {
+        $output = _batch_page();
+    } else {
+        if (empty($_SESSION['authorize_operation']) || empty($_SESSION['authorize_filetransfer_info'])) {
+            $output = t('It appears you have reached this page in error.');
+        } elseif (!$batch = batch_get()) {
+            // We have a batch to process, show the filetransfer form.
+            $elements = backdrop_get_form('authorize_filetransfer_form');
+            $output = backdrop_render($elements);
+        }
     }
-  }
-  // We defer the display of messages until all operations are done.
-  $show_messages = !(($batch = batch_get()) && isset($batch['running']));
-}
-else {
-  $output = authorize_access_denied_page();
+    // We defer the display of messages until all operations are done.
+    $show_messages = !(($batch = batch_get()) && isset($batch['running']));
+} else {
+    $output = authorize_access_denied_page();
 }
 
 if (!empty($output)) {
-  print theme('update_page', array('content' => $output, 'show_messages' => $show_messages));
+    echo theme('update_page', ['content' => $output, 'show_messages' => $show_messages]);
 }
